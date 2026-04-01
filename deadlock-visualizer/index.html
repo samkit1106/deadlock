@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deadlock Detection</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard">
+        <aside class="sidebar glass-panel">
+            <div class="brand">
+                <div class="brand-icon">🔄</div>
+                <div>
+                    <h1>Deadlock Detection</h1>
+                </div>
+            </div>
+            
+            <div class="controls section">
+                <h3>System Configuration</h3>
+                
+                <div class="control-group">
+                    <label>Dimensions</label>
+                    <div class="input-flex multiple">
+                        <input type="number" id="process-count" min="1" max="10" placeholder="Processes" value="5">
+                        <span class="cross">x</span>
+                        <input type="number" id="resource-count" min="1" max="5" placeholder="Resources" value="3">
+                        <button id="btn-generate" class="btn btn-outline" title="Generate Matrix Inputs">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                                <path d="M3 3v5h5"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="matrix-container fancy-scrollbar" id="matrix-inputs"></div>
+                
+                <div class="legend">
+                    <div class="legend-item"><span class="dot info"></span> Needs Resources</div>
+                    <div class="legend-item"><span class="dot warning"></span> Allocating / Checking</div>
+                    <div class="legend-item"><span class="dot safe"></span> Safe (Finished)</div>
+                    <div class="legend-item"><span class="dot danger"></span> Unsafe / Deadlock</div>
+                </div>
+            </div>
+            
+            <div class="trace-section section">
+                <div class="trace-header">
+                    <h3>Execution Trace</h3>
+                    <div class="server-status active" id="server-status">
+                        <span class="pulse-indicator"></span> Connected
+                    </div>
+                </div>
+                <div id="trace-log" class="trace-log fancy-scrollbar"></div>
+            </div>
+            
+            <div class="action-footer">
+                <button id="btn-run" class="btn btn-run">
+                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 9-14 9V3z"/></svg> 
+                     Run Analysis
+                </button>
+            </div>
+        </aside>
+        
+        <main class="graph-area glass-panel" id="graph-container">
+            <svg id="edges-svg"></svg>
+            <div id="nodes-container"></div>
+            
+            <div id="resource-pool" class="resource-pool">
+                <h3>Resource Pool</h3>
+                <div class="pool-counts" id="pool-counts"></div>
+            </div>
+            
+            <div id="status-overlay" class="status-overlay hidden">
+                <h2 id="status-title">UNSAFE STATE</h2>
+                <p id="status-desc">System could enter a deadlock.</p>
+            </div>
+        </main>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
