@@ -1,0 +1,199 @@
+<mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+  <root>
+    <mxCell id="0" />
+    <mxCell id="1" parent="0" />
+
+    <!-- ===== TITLE ===== -->
+    <mxCell id="title" value="Deadlock Visualizer — UML Class Diagram" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="400" y="20" width="700" height="40" as="geometry" />
+    </mxCell>
+
+    <!-- ===== PACKAGE: com.visualizer.deadlock ===== -->
+    <mxCell id="pkg" value="&lt;&lt;package&gt;&gt; com.visualizer.deadlock" style="text;html=1;strokeColor=#6c8ebf;fillColor=#dae8fc;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="20" y="80" width="280" height="30" as="geometry" />
+    </mxCell>
+
+    <!-- ============================================================ -->
+    <!--              DeadlockVisualizerApplication                   -->
+    <!-- ============================================================ -->
+    <mxCell id="DVA" value="&lt;b&gt;DeadlockVisualizerApplication&lt;/b&gt;&lt;hr/&gt;«SpringBootApplication»&lt;hr/&gt;+ main(args: String[]): void&lt;br/&gt;+ corsConfigurer(): WebMvcConfigurer" style="text;html=1;strokeColor=#23445D;fillColor=#1ba1e2;fontColor=#ffffff;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;rounded=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="40" y="130" width="310" height="90" as="geometry" />
+    </mxCell>
+
+    <!-- ============================================================ -->
+    <!--              DeadlockController                              -->
+    <!-- ============================================================ -->
+    <mxCell id="DC" value="&lt;b&gt;DeadlockController&lt;/b&gt;&lt;hr/&gt;«RestController» @RequestMapping(/api)&lt;hr/&gt;- ds: DeadlockService&lt;hr/&gt;+ dt(rq: GraphDTO.Request): GraphDTO.Response&lt;br/&gt;  @PostMapping(/detect)&lt;br/&gt;+ bk(rq: BankersDTO.Request): BankersDTO.Response&lt;br/&gt;  @PostMapping(/bankers) @CrossOrigin(*)" style="text;html=1;strokeColor=#23445D;fillColor=#1ba1e2;fontColor=#ffffff;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;rounded=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="40" y="260" width="310" height="130" as="geometry" />
+    </mxCell>
+
+    <!-- ============================================================ -->
+    <!--              DeadlockService                                 -->
+    <!-- ============================================================ -->
+    <mxCell id="DS" value="&lt;b&gt;DeadlockService&lt;/b&gt;&lt;hr/&gt;«Service»&lt;hr/&gt;+ detectDeadlock(rq: GraphDTO.Request): GraphDTO.Response&lt;br/&gt;+ detectBankers(rq: BankersDTO.Request): BankersDTO.Response&lt;br/&gt;- d(u, v[], rs[], adj, trace, path): boolean" style="text;html=1;strokeColor=#23445D;fillColor=#1ba1e2;fontColor=#ffffff;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;rounded=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="40" y="440" width="310" height="110" as="geometry" />
+    </mxCell>
+
+    <!-- ============================================================ -->
+    <!--              GraphDTO                                        -->
+    <!-- ============================================================ -->
+    <mxCell id="GDTOtitle" value="&lt;b&gt;GraphDTO&lt;/b&gt;&lt;hr/&gt;«outer class»" style="text;html=1;strokeColor=#6c8ebf;fillColor=#dae8fc;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;rounded=1;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="420" y="130" width="290" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- GraphDTO.Edge -->
+    <mxCell id="GEdge" value="&lt;b&gt;GraphDTO.Edge&lt;/b&gt;&lt;hr/&gt;«inner class»&lt;hr/&gt;+ from: int&lt;br/&gt;+ to: int" style="text;html=1;strokeColor=#6c8ebf;fillColor=#dae8fc;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;rounded=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="420" y="210" width="230" height="80" as="geometry" />
+    </mxCell>
+
+    <!-- GraphDTO.Request -->
+    <mxCell id="GReq" value="&lt;b&gt;GraphDTO.Request&lt;/b&gt;&lt;hr/&gt;«inner class»&lt;hr/&gt;+ nodes: int&lt;br/&gt;+ edges: List&lt;Edge&gt;" style="text;html=1;strokeColor=#6c8ebf;fillColor=#dae8fc;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;rounded=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="420" y="320" width="230" height="90" as="geometry" />
+    </mxCell>
+
+    <!-- GraphDTO.TraceEvent -->
+    <mxCell id="GTE" value="&lt;b&gt;GraphDTO.TraceEvent&lt;/b&gt;&lt;hr/&gt;«inner class»&lt;hr/&gt;+ type: String&lt;br/&gt;+ message: String&lt;br/&gt;+ node: Integer&lt;br/&gt;+ from: Integer&lt;br/&gt;+ to: Integer&lt;br/&gt;+ stack: List&lt;Integer&gt;&lt;br/&gt;+ cyclePath: List&lt;Integer&gt;&lt;hr/&gt;+ setNode(n): TraceEvent&lt;br/&gt;+ setEdge(f,t): TraceEvent&lt;br/&gt;+ setStack(s): TraceEvent&lt;br/&gt;+ setCyclePath(cp): TraceEvent" style="text;html=1;strokeColor=#6c8ebf;fillColor=#dae8fc;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;rounded=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="420" y="440" width="230" height="200" as="geometry" />
+    </mxCell>
+
+    <!-- GraphDTO.Response -->
+    <mxCell id="GRes" value="&lt;b&gt;GraphDTO.Response&lt;/b&gt;&lt;hr/&gt;«inner class»&lt;hr/&gt;+ hasDeadlock: boolean&lt;br/&gt;+ trace: List&lt;TraceEvent&gt;&lt;hr/&gt;+ Response(hd, trace)" style="text;html=1;strokeColor=#6c8ebf;fillColor=#dae8fc;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;rounded=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="420" y="670" width="230" height="100" as="geometry" />
+    </mxCell>
+
+    <!-- ============================================================ -->
+    <!--              BankersDTO                                      -->
+    <!-- ============================================================ -->
+    <mxCell id="BDTOtitle" value="&lt;b&gt;BankersDTO&lt;/b&gt;&lt;hr/&gt;«outer class»" style="text;html=1;strokeColor=#d6b656;fillColor=#fff2cc;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;rounded=1;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="720" y="130" width="260" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- BankersDTO.Request -->
+    <mxCell id="BReq" value="&lt;b&gt;BankersDTO.Request&lt;/b&gt;&lt;hr/&gt;«inner class»&lt;hr/&gt;+ processes: int&lt;br/&gt;+ resources: int&lt;br/&gt;+ available: int[]&lt;br/&gt;+ max: int[][]&lt;br/&gt;+ allocation: int[][]" style="text;html=1;strokeColor=#d6b656;fillColor=#fff2cc;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;rounded=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="720" y="210" width="260" height="120" as="geometry" />
+    </mxCell>
+
+    <!-- BankersDTO.TraceEvent -->
+    <mxCell id="BTE" value="&lt;b&gt;BankersDTO.TraceEvent&lt;/b&gt;&lt;hr/&gt;«inner class»&lt;hr/&gt;+ type: String&lt;br/&gt;+ message: String&lt;br/&gt;+ node: Integer&lt;br/&gt;+ available: int[]&lt;hr/&gt;+ TraceEvent()&lt;br/&gt;+ TraceEvent(t,m)&lt;br/&gt;+ setNode(n): TraceEvent&lt;br/&gt;+ setAvailable(a): TraceEvent" style="text;html=1;strokeColor=#d6b656;fillColor=#fff2cc;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;rounded=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="720" y="360" width="260" height="180" as="geometry" />
+    </mxCell>
+
+    <!-- BankersDTO.Response -->
+    <mxCell id="BRes" value="&lt;b&gt;BankersDTO.Response&lt;/b&gt;&lt;hr/&gt;«inner class»&lt;hr/&gt;+ isSafe: boolean&lt;br/&gt;+ safeSequence: List&lt;Integer&gt;&lt;br/&gt;+ trace: List&lt;TraceEvent&gt;&lt;hr/&gt;+ Response(s, seq, trace)" style="text;html=1;strokeColor=#d6b656;fillColor=#fff2cc;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;rounded=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="720" y="570" width="260" height="110" as="geometry" />
+    </mxCell>
+
+    <!-- ============================================================ -->
+    <!--              Frontend (JavaScript)                           -->
+    <!-- ============================================================ -->
+    <mxCell id="FEpkg" value="«Frontend» deadlock-visualizer (HTML/CSS/JS)" style="text;html=1;strokeColor=#82b366;fillColor=#d5e8d4;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="1060" y="80" width="320" height="30" as="geometry" />
+    </mxCell>
+
+    <!-- index.html -->
+    <mxCell id="HTML" value="&lt;b&gt;index.html&lt;/b&gt;&lt;hr/&gt;«HTML Document»&lt;hr/&gt;#process-count : input&lt;br/&gt;#resource-count : input&lt;br/&gt;#btn-generate : button&lt;br/&gt;#btn-run : button&lt;br/&gt;#matrix-inputs : div&lt;br/&gt;#trace-log : div&lt;br/&gt;#edges-svg : SVGElement&lt;br/&gt;#nodes-container : div&lt;br/&gt;#pool-counts : div&lt;br/&gt;#resource-pool : div&lt;br/&gt;#status-overlay : div&lt;br/&gt;#server-status : div" style="text;html=1;strokeColor=#82b366;fillColor=#d5e8d4;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;rounded=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="1060" y="130" width="260" height="240" as="geometry" />
+    </mxCell>
+
+    <!-- script.js -->
+    <mxCell id="JS" value="&lt;b&gt;script.js&lt;/b&gt;&lt;hr/&gt;«Module / IIFE»&lt;hr/&gt;— State —&lt;br/&gt;p: int (processes)&lt;br/&gt;r: int (resources)&lt;br/&gt;ir: boolean (isRunning)&lt;br/&gt;np: Array (nodePositions)&lt;br/&gt;dm: int (animDelay ms)&lt;br/&gt;au: string (API URL)&lt;hr/&gt;— Functions —&lt;br/&gt;iG(): initializeGraph()&lt;br/&gt;dG(): drawGraph()&lt;br/&gt;gMI(): generateMatrixInputs()&lt;br/&gt;gP(): getPayload(): Object&lt;br/&gt;rA(): runAnalysis() async&lt;br/&gt;aT(trace, isSafe): animateTrace() async&lt;br/&gt;dE(fromCenter, pi, type): drawEdge()&lt;br/&gt;cE(): clearEdges()&lt;br/&gt;hN(id, state): highlightNode()&lt;br/&gt;uPV(available?): updatePoolView()&lt;br/&gt;lM(msg, type): logMessage()&lt;br/&gt;cL(): clearLog()&lt;br/&gt;iS(): initSVG()&lt;br/&gt;rV(): resetView()&lt;br/&gt;slp(ms): sleep(): Promise" style="text;html=1;strokeColor=#82b366;fillColor=#d5e8d4;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;rounded=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="1060" y="400" width="260" height="390" as="geometry" />
+    </mxCell>
+
+    <!-- styles.css -->
+    <mxCell id="CSS" value="&lt;b&gt;styles.css&lt;/b&gt;&lt;hr/&gt;«Stylesheet»&lt;hr/&gt;CSS Variables (--primary, --success,&lt;br/&gt;--danger, --info, ...)&lt;br/&gt;Glassmorphism layout&lt;br/&gt;Node / Edge animation classes&lt;br/&gt;Status overlay styles&lt;br/&gt;Matrix table styles" style="text;html=1;strokeColor=#82b366;fillColor=#d5e8d4;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;rounded=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="1060" y="820" width="260" height="120" as="geometry" />
+    </mxCell>
+
+    <!-- ============================== EDGES ============================== -->
+
+    <!-- DVA uses DC (component scan / boot) -->
+    <mxCell id="e1" value="bootstraps" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=0;endArrow=open;endFill=0;strokeColor=#6c8ebf;" edge="1" parent="1" source="DVA" target="DC">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- DC @Autowired DS -->
+    <mxCell id="e2" value="@Autowired" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=open;endFill=0;strokeColor=#6c8ebf;" edge="1" parent="1" source="DC" target="DS">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- DC uses GraphDTO.Request -->
+    <mxCell id="e3" value="«uses»" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;dashed=1;endArrow=open;endFill=0;strokeColor=#6c8ebf;" edge="1" parent="1" source="DC" target="GReq">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- DC uses BankersDTO.Request -->
+    <mxCell id="e4" value="«uses»" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;dashed=1;endArrow=open;endFill=0;strokeColor=#d6b656;" edge="1" parent="1" source="DC" target="BReq">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- DS uses GraphDTO.* -->
+    <mxCell id="e5" value="«creates»" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;dashed=1;endArrow=open;endFill=0;strokeColor=#6c8ebf;" edge="1" parent="1" source="DS" target="GTE">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <mxCell id="e6" value="«returns»" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;dashed=1;endArrow=open;endFill=0;strokeColor=#6c8ebf;" edge="1" parent="1" source="DS" target="GRes">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- DS uses BankersDTO.* -->
+    <mxCell id="e7" value="«creates»" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;dashed=1;endArrow=open;endFill=0;strokeColor=#d6b656;" edge="1" parent="1" source="DS" target="BTE">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <mxCell id="e8" value="«returns»" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;dashed=1;endArrow=open;endFill=0;strokeColor=#d6b656;" edge="1" parent="1" source="DS" target="BRes">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- GraphDTO composition -->
+    <mxCell id="e9" value="contains" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;endArrow=diamond;endFill=1;strokeColor=#6c8ebf;" edge="1" parent="1" source="GDTOtitle" target="GEdge">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="e10" value="contains" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;endArrow=diamond;endFill=1;strokeColor=#6c8ebf;" edge="1" parent="1" source="GDTOtitle" target="GReq">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="e11" value="contains" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;endArrow=diamond;endFill=1;strokeColor=#6c8ebf;" edge="1" parent="1" source="GDTOtitle" target="GTE">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="e12" value="contains" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;endArrow=diamond;endFill=1;strokeColor=#6c8ebf;" edge="1" parent="1" source="GDTOtitle" target="GRes">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- BankersDTO composition -->
+    <mxCell id="e13" value="contains" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;endArrow=diamond;endFill=1;strokeColor=#d6b656;" edge="1" parent="1" source="BDTOtitle" target="BReq">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="e14" value="contains" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;endArrow=diamond;endFill=1;strokeColor=#d6b656;" edge="1" parent="1" source="BDTOtitle" target="BTE">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="e15" value="contains" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;endArrow=diamond;endFill=1;strokeColor=#d6b656;" edge="1" parent="1" source="BDTOtitle" target="BRes">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- GReq uses GEdge -->
+    <mxCell id="e16" value="uses" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;dashed=1;endArrow=open;endFill=0;strokeColor=#6c8ebf;" edge="1" parent="1" source="GReq" target="GEdge">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- Frontend HTTP call to backend -->
+    <mxCell id="e17" value="POST /api/bankers (HTTP/JSON)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;dashed=1;endArrow=open;endFill=0;strokeColor=#82b366;strokeWidth=2;" edge="1" parent="1" source="JS" target="DC">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- HTML loads JS -->
+    <mxCell id="e18" value="&lt;script src&gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;dashed=1;endArrow=open;endFill=0;strokeColor=#82b366;" edge="1" parent="1" source="HTML" target="JS">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- HTML uses CSS -->
+    <mxCell id="e19" value="&lt;link rel=stylesheet&gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;dashed=1;endArrow=open;endFill=0;strokeColor=#82b366;" edge="1" parent="1" source="HTML" target="CSS">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- ============================== LEGEND ============================== -->
+    <mxCell id="legend" value="&lt;b&gt;Legend&lt;/b&gt;&lt;hr/&gt;Blue = Spring Backend class&lt;br/&gt;Light Blue = GraphDTO inner classes&lt;br/&gt;Yellow = BankersDTO inner classes&lt;br/&gt;Green = Frontend (HTML/JS/CSS)&lt;br/&gt;◆ = composition&lt;br/&gt;→ (dashed) = dependency / uses" style="text;html=1;strokeColor=#555555;fillColor=#f5f5f5;fontColor=#333333;align=left;verticalAlign=top;spacingLeft=8;spacingRight=8;overflow=hidden;rotatable=0;rounded=1;fontSize=10;" vertex="1" parent="1">
+      <mxGeometry x="40" y="600" width="260" height="140" as="geometry" />
+    </mxCell>
+
+  </root>
+</mxGraphModel>

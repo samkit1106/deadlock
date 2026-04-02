@@ -15,7 +15,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const sd = document.getElementById('status-desc');
 
     let p = 5, r = 3, ir = false, np = [];
-    const dm = 1200, au = 'http://127.0.0.1:8080/api/bankers';
+    // Backend URL: update RENDER_URL after deploying to Render.com
+    const BACKEND = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+        ? 'http://127.0.0.1:8080'
+        : 'https://deadlock-backend.onrender.com';
+    const dm = 1200, au = `${BACKEND}/api/bankers`;
 
     function iS() {
         es.innerHTML = `<defs><marker id="arrow-allocating" markerWidth="6" markerHeight="6" refX="25" refY="3" orient="auto"><polygon points="0 0, 6 3, 0 6" fill="var(--info)" /></marker><marker id="arrow-releasing" markerWidth="6" markerHeight="6" refX="25" refY="3" orient="auto"><polygon points="6 0, 0 3, 6 6" fill="var(--success)" /></marker></defs>`;
